@@ -1,61 +1,256 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Gestión de Empresas API con Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este proyecto implementa una API RESTful para la gestión de empresas, siguiendo los requerimientos de un desafío técnico. Permite realizar operaciones CRUD sobre datos de empresas, con validaciones, manejo de excepciones robusto y una interfaz de usuario básica.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📚 Tabla de Contenidos
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. [Requisitos del Sistema](#1-🛠-requisitos-del-sistema)
+2. [Instalación y Configuración](#2-⚙-instalación-y-configuración)
+3. [Ejecución del Servidor](#3-▶-ejecución-del-servidor)
+4. [Acceso a la API](#4-🌐-acceso-a-la-api)
+5. [Documentación de la API (Swagger UI)](#5-📄-documentación-de-la-api-swagger-ui)**<span style="color:red"> - Pendiente Implementación</span>**
+6. [Frontend Básico](#6-🖥-frontend-básico)**<span style="color:red"> - Pendiente Implementación</span>**
+7. [Ejecución de Pruebas](#7-✅-ejecución-de-pruebas)
+8. [Integración Continua (CI/CD)](#8-🔁-integración-continua-cicd)**<span style="color:red"> - Pendiente Implementación</span>**
+9. [Estructura del Proyecto y Patrones](#9-🧱-estructura-del-proyecto-y-patrones)
+10. [Licencia](#10-📝-licencia)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 1. 🛠 Requisitos del Sistema
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- PHP ^8.3
+- Composer ^2.8
+- Node.js & NPM/Yarn (opcional)
+- Servidor Web: Nginx, Apache o PHP Development Server
+- Base de datos: MySQL, SQLite (por defecto para pruebas)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 2. ⚙ Instalación y Configuración
 
-## Laravel Sponsors
+### 2.1 Clonar el Repositorio
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+git clone https://github.com/gustavogiraldo16/laravel-company-management-api.git
+cd laravel-company-management-api.git
+```
 
-### Premium Partners
+### 2.2 Instalar Dependencias
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+composer install
+```
 
-## Contributing
+### 2.3 Configuración del Entorno
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-## Code of Conduct
+Por defecto se usa SQLite. Si prefieres otra base de datos, modifica las siguientes variables en `.env`:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nombre_base_datos
+DB_USERNAME=usuario
+DB_PASSWORD=contraseña
+```
 
-## Security Vulnerabilities
+### 2.4 Ejecutar Migraciones
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+php artisan migrate
+```
 
-## License
+Para reiniciar la base de datos:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+php artisan migrate:fresh
+```
+
+---
+
+## 3. ▶ Ejecución del Servidor
+
+Inicia el servidor con:
+
+```bash
+php artisan serve
+```
+
+Disponible en: `http://127.0.0.1:8000`
+
+---
+
+## 4. 🌐 Acceso a la API
+
+### Base URL
+
+```
+http://127.0.0.1:8000/api/v1
+```
+
+### Endpoints
+
+| Método | Endpoint               | Descripción                            |
+|--------|------------------------|----------------------------------------|
+| GET    | /companies             | Obtener todas las empresas             |
+| GET    | /companies/{nit}       | Obtener una empresa por su NIT         |
+| POST   | /companies             | Crear una nueva empresa                |
+| PUT    | /companies/{nit}       | Actualizar una empresa                 |
+| DELETE | /companies/{nit}       | Eliminar empresa (solo si está inactiva)|
+
+**Ejemplo de Request Body:**
+
+```json
+// POST
+{
+  "nit": "123456789-0",
+  "name": "Ejemplo S.A.S.",
+  "address": "Calle 1",
+  "phone": "3001234567"
+}
+
+// PUT
+{
+  "name": "Ejemplo Actualizado",
+  "address": "Calle 2",
+  "status": "inactive"
+}
+```
+
+### Lógica de Negocio
+
+- `nit` es único y no editable.
+- `status` por defecto es `active`.
+- Solo se puede eliminar si `status` es `inactive`.
+
+### Respuestas
+
+```json
+// Éxito
+{
+  "status": "success",
+  "message": "Company created successfully",
+  "data": { ... }
+}
+
+// Error 404
+{
+  "status": "error",
+  "message": "Resource not found."
+}
+
+// Error 422
+{
+  "status": "error",
+  "message": "The given data was invalid.",
+  "errors": {
+    "campo": ["Mensaje de error"]
+  }
+}
+
+// Error 403
+{
+  "status": "error",
+  "message": "Only companies with "inactive" status can be deleted"
+}
+
+// Error 500
+{
+  "status": "error",
+  "message": "An unexpected error occurred."
+}
+```
+
+---
+
+## 5. 📄 Documentación de la API (Swagger UI)
+
+> ⚠️ **Nota:**
+> Esta sesión aún no está implementada y se encuentra en construcción.
+> Por favor, ten en cuenta que la funcionalidad descrita aquí puede estar incompleta o sujeta a cambios.
+
+Disponible en:
+`http://127.0.0.1:8000/api/documentation`
+
+Generar documentación después de cambios:
+
+```bash
+php artisan l5-swagger:generate
+```
+
+---
+
+## 6. 🖥 Frontend Básico
+
+> ⚠️ **Nota:**
+> La sección de frontend básico aún no está implementada y se encuentra en construcción.
+> Próximamente se añadirá la lógica y documentación detallada para esta funcionalidad.
+
+Interfaz incluida en:
+
+```
+http://127.0.0.1:8000/companies-app
+```
+
+Permite:
+
+- Listar empresas
+- Crear, editar, eliminar (solo inactivas)
+
+---
+
+## 7. ✅ Ejecución de Pruebas
+
+El siguiente comando ejecuta **todas las pruebas** (unitarias y de integración) del proyecto:
+
+```bash
+php artisan test
+```
+
+### 7.1 Pruebas Unitarias
+
+Ejecuta solo las pruebas unitarias con:
+
+```bash
+php artisan test --testsuite=Unit
+```
+
+### 7.2 Pruebas de Integración
+
+Ejecuta solo las pruebas de integración con:
+
+```bash
+php artisan test --testsuite=Feature
+```
+
+---
+
+## 8. 🔁 Integración Continua (CI/CD)
+
+> ⚠️ **Nota:**
+> La sección de integración continua (CI/CD) aún no está implementada y se encuentra en construcción.
+> Próximamente se añadirá la configuración y documentación detallada para esta funcionalidad.
+
+---
+
+## 9. 🧱 Estructura del Proyecto y Patrones
+
+- **API RESTful**: Implementada en `api.php` y controladores bajo `Controllers`, expone endpoints para CRUD de empresas, retornando respuestas en formato JSON.
+- **Service Layer**: Toda la lógica de negocio relacionada con empresas está centralizada en `App\Services\CompanyService`.
+- **Form Requests**: Las validaciones de entrada se gestionan mediante clases personalizadas en `Requests`, asegurando datos correctos antes de llegar a los controladores.
+
+---
+
+## 10. 📝 Licencia
+
+MIT License.
+Desarrollado por: **Gustavo Adolfo Giraldo Rendón**
+Fecha: **2025-06-04**
