@@ -10,10 +10,10 @@ Este proyecto implementa una API RESTful para la gestión de empresas, siguiendo
 2. [Instalación y Configuración](#2-⚙-instalación-y-configuración)
 3. [Ejecución del Servidor](#3-▶-ejecución-del-servidor)
 4. [Acceso a la API](#4-🌐-acceso-a-la-api)
-5. [Documentación de la API (Swagger UI)](#5-📄-documentación-de-la-api-swagger-ui)**<span style="color:red"> - Pendiente Implementación</span>**
-6. [Frontend Básico](#6-🖥-frontend-básico)**<span style="color:red"> - Pendiente Implementación</span>**
+5. [Documentación de la API (Swagger UI)](#5-📄-documentación-de-la-api-swagger-ui) **Pendiente Implementación**
+6. [Frontend Básico](#6-🖥-frontend-básico) **Pendiente Implementación**
 7. [Ejecución de Pruebas](#7-✅-ejecución-de-pruebas)
-8. [Integración Continua (CI/CD)](#8-🔁-integración-continua-cicd)**<span style="color:red"> - Pendiente Implementación</span>**
+8. [Integración Continua (CI/CD)](#8-🔁-integración-continua-cicd) **Pendiente Implementación**
 9. [Estructura del Proyecto y Patrones](#9-🧱-estructura-del-proyecto-y-patrones)
 10. [Licencia](#10-📝-licencia)
 
